@@ -1,0 +1,5 @@
+apiVersion: config.openshift.io/v1
+kind: ClusterVersion
+name: version
+patch: '{"spec":{"channel":"stable-4.9","desiredUpdate":{"image":"quay.io/openshift-release-dev/ocp-release@sha256:1c13f0926c37c122eb5c86afd754c007f38977c8fc32d7da090490f556945afd","version":"4.9.23"}}}'
+patchType: merge
