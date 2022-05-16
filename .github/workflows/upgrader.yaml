@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        ref: ocp-upgrade-branch
     - run: |
         file="$(curl https://mirror.openshift.com/pub/openshift-v4/clients/ocp/stable/release.txt -o release.txt)"
         IMAGE="$(awk '/Pull From/{print $3}' release.txt)"
@@ -18,7 +20,7 @@ jobs:
     - name: pull-request
       uses: repo-sync/pull-request@v2
       with:
-        source_branch: ""                                 # If blank, default: triggered branch
+        source_branch: "ocp-upgrade-branch"                                 # If blank, default: triggered branch
         destination_branch: "main"                      # If blank, default: master
         pr_title: "feat(eng): Upgrade cluster version" # Title of pull request
         pr_body: "test body"              # Full markdown support, requires pr_title to be set                            # Creates pull request even if there are no changes
