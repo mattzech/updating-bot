@@ -9,13 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-      with:
-        cmd:
-          file="$(curl https://mirror.openshift.com/pub/openshift-v4/clients/ocp/stable/release.txt -o release.txt)"
-          IMAGE="$(awk '/Pull From/{print $3}' release.txt)"
-          VERSION="$(awk '/Version/{print $2;exit}' release.txt)"
-          SHORT_VERSION=$(echo $VERSION | cut -c 1-4)
-          myenv="'{\"spec\":{\"channel\":\"stable-${SHORT_VERSION}\",\"desiredUpdate\":{\"image\":\"${IMAGE}\",\"version\":\"${VERSION}\"}}}'"  yq -i '.patch = env(myenv)' clusterversion.yaml
+    - run: |
+        file="$(curl https://mirror.openshift.com/pub/openshift-v4/clients/ocp/stable/release.txt -o release.txt)"
+        IMAGE="$(awk '/Pull From/{print $3}' release.txt)"
+        VERSION="$(awk '/Version/{print $2;exit}' release.txt)"
+        SHORT_VERSION=$(echo $VERSION | cut -c 1-4)
+        myenv="'{\"spec\":{\"channel\":\"stable-${SHORT_VERSION}\",\"desiredUpdate\":{\"image\":\"${IMAGE}\",\"version\":\"${VERSION}\"}}}'"  yq -i '.patch = env(myenv)' clusterversion.yaml
     - name: pull-request
       uses: repo-sync/pull-request@v2
       with:
