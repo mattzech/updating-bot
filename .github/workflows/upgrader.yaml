@@ -19,7 +19,7 @@ jobs:
           SHORT_VERSION=$(echo $VERSION | cut -c 1-4)
           myenv="'{\"spec\":{\"channel\":\"stable-${SHORT_VERSION}\",\"desiredUpdate\":{\"image\":\"${IMAGE}\",\"version\":\"${VERSION}\"}}}'"  yq -i '.patch = env(myenv)' clusterversion.yaml
         source_branch: ""                                 # If blank, default: triggered branch
-        destination_branch: "master"                      # If blank, default: master
+        destination_branch: "main"                      # If blank, default: master
         pr_title: "feat(eng): Upgrade cluster version" # Title of pull request
         pr_body: "test body"              # Full markdown support, requires pr_title to be set                            # Creates pull request even if there are no changes
         github_token: ${{ secrets.GITHUB_TOKEN }}
