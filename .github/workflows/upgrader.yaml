@@ -19,7 +19,7 @@ jobs:
         SHORT_VERSION=$(echo $VERSION | cut -c 1-4)
         myenv="'{\"spec\":{\"channel\":\"stable-${SHORT_VERSION}\",\"desiredUpdate\":{\"image\":\"${IMAGE}\",\"version\":\"${VERSION}\"}}}'"  yq -i '.patch = env(myenv)' clusterversion.yaml
     - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v3.10.0
+      uses: peter-evans/create-pull-request@v4.0.3
       with:
         token: ${{ secrets.ocp-upgrade-token }}
         commit-message: Simple demo
