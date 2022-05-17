@@ -28,3 +28,4 @@ jobs:
           [create-pull-request](https://github.com/peter-evans/create-pull-request).
         labels: feature, automated pr
         branch: ocp-upgrade-branch
+        base: main
