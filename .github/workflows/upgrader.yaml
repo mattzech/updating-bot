@@ -21,6 +21,7 @@ jobs:
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v4.0.3
       with:
+        committer: mattzech <mattzech@users.noreply.github.com>
         token: ${{ secrets.ocp-upgrade-token }}
         commit-message: Simple demo
         title: '[Example] Simple demo'
