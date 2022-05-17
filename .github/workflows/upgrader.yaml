@@ -11,6 +11,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
         ref: ocp-upgrade-branch
+        token: ${{ secrets.ocp-upgrade-token }}
     - run: |
         file="$(curl https://mirror.openshift.com/pub/openshift-v4/clients/ocp/stable/release.txt -o release.txt)"
         IMAGE="$(awk '/Pull From/{print $3}' release.txt)"
