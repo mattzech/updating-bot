@@ -18,5 +18,5 @@ jobs:
         SHORT_VERSION=$(echo $VERSION | cut -c 1-4)
         myenv="'{\"spec\":{\"channel\":\"stable-${SHORT_VERSION}\",\"desiredUpdate\":{\"image\":\"${IMAGE}\",\"version\":\"${VERSION}\"}}}'"  yq -i '.patch = env(myenv)' clusterversion.yaml
         git add .
-        git commit -m "feat(ocp): upgrade ocp version to $VERSION
+        git commit -m "feat(ocp): upgrade ocp version to $VERSION"
         git push
